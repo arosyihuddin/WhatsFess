@@ -224,8 +224,8 @@ export class BaileysClass extends EventEmitter {
                         await this.sock.presenceSubscribe(message.key.remoteJid);
                         await this.sock.sendPresenceUpdate("composing", message.key.remoteJid);
                         try {
-                            const replyText = "Haloo";
-                            // const replyText = await openaiChat(messageText);
+                            // const replyText = "Haloo";
+                            const replyText = await openaiChat(messageText);
                             await this.sendMessage(message.key.remoteJid!, replyText!);
                         } catch (error) {
                             console.log("Error:", error);
