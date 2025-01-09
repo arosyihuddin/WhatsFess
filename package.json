@@ -1,0 +1,22 @@
+{
+  "type": "commonjs",
+  "scripts": {
+    "start": "ts-node src/index.js",
+    "dev": "ts-node-dev src/index.ts"
+  },
+  "dependencies": {
+    "@whiskeysockets/baileys": "^6.7.9",
+    "dotenv": "^16.4.7",
+    "events": "^3.3.0",
+    "link-preview-js": "^3.0.13",
+    "node-cache": "^5.1.2",
+    "openai": "^4.77.4",
+    "pino": "^9.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "@types/qrcode-terminal": "^0.12.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.7.2"
+  }
+}
