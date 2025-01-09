@@ -1,4 +1,7 @@
 {
+  "name": "WhatsFess",
+  "version": "1.0.0",
+  "license": "MIT",
   "type": "commonjs",
   "scripts": {
     "start": "ts-node src/index.js",
