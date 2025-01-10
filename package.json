@@ -4,8 +4,9 @@
   "license": "MIT",
   "type": "commonjs",
   "scripts": {
-    "start": "ts-node src/index.js",
-    "dev": "ts-node-dev src/index.ts"
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev src/index.ts",
+    "build": "npx tsc"
   },
   "dependencies": {
     "@whiskeysockets/baileys": "^6.7.9",
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@types/node": "^22.10.5",
     "@types/qrcode-terminal": "^0.12.2",
+    "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"
   }

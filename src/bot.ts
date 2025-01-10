@@ -25,7 +25,7 @@ export class BaileysClass extends EventEmitter {
     private sock: any;
     private readonly sessionPath: string;
     private readonly msgRetryCounterCache = new NodeCache();
-    private readonly logger: Logger = pino({ level: "warn" });
+    private readonly logger: Logger = pino({ level: process.env.LOG_LEVEL || "warn" });
 
     constructor(private readonly sessionName: string = "session") {
         super();
