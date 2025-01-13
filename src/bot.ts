@@ -2,6 +2,7 @@ import { Boom } from '@hapi/boom'
 import NodeCache from 'node-cache'
 import readline from 'readline'
 import makeWASocket, {
+    delay,
     DisconnectReason,
     fetchLatestBaileysVersion,
     getAggregateVotesInPollMessage,
@@ -155,11 +156,10 @@ export class WhatsFess {
             // Menangani kode pairing untuk klien web
             if (this.usePairingCode && !sock.authState.creds.registered) {
                 // const phoneNumber = await this.question('Silakan masukkan nomor telepon Anda:\n')
-                // const code = await sock.requestPairingCode(phoneNumber)
-                // console.log(process.env.WHATSAPP_NUMBER)
-                // console.log(typeof 6289518291377)
-                const code = await sock.requestPairingCode(process.env.WHATSAPP_NUMBER!)
                 console.log("Mengambil Kode Pairing...")
+                const whatsappNumber = String(process.env.WHATSAPP_NUMBER);
+                // const whatsappNumber = '6289518291377';
+                const code = await sock.requestPairingCode(whatsappNumber)
                 console.log(`Kode Pairing: ${code}`)
             }
 
