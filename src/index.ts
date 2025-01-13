@@ -1,16 +1,11 @@
-import { BaileysClass } from "./bot";
+import {WhatsFess} from "./bot"
 
 (async () => {
-    const bot = new BaileysClass();
-    console.log("Connecting to WhatsApp API...");
-
-    bot.on("ready", () => {
-        console.log("Bot is ready to receive messages!");
-        // bot.sendMessage("1234567890", "Hello from Baileys!");
-    });
-
-    bot.on("error", (err) => {
-        console.error("Error:", err);
-    });
+    // Inisialisasi dan mulai klien WhatsApp
+    const client = new WhatsFess()
+    client.startSock().catch(err => {
+        console.error('Gagal memulai koneksi WhatsApp:', err)
+        process.exit(1)
+    })
 
 })();

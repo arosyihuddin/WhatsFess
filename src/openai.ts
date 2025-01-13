@@ -18,6 +18,7 @@ export const openaiChat = async (message: string) => {
             { role: "system", content: "Link Chnnel WhatsFess https://whatsapp.com/channel/0029Vb2SPkC6LwHr0IGsFR2h" },
             { role: "user", content: message }
         ],
+        max_tokens: 150
     });
     return response.choices[0].message.content;
 };
