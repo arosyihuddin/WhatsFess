@@ -154,8 +154,12 @@ export class WhatsFess {
 
             // Menangani kode pairing untuk klien web
             if (this.usePairingCode && !sock.authState.creds.registered) {
-                const phoneNumber = await this.question('Silakan masukkan nomor telepon Anda:\n')
-                const code = await sock.requestPairingCode(phoneNumber)
+                // const phoneNumber = await this.question('Silakan masukkan nomor telepon Anda:\n')
+                // const code = await sock.requestPairingCode(phoneNumber)
+                // console.log(process.env.WHATSAPP_NUMBER)
+                // console.log(typeof 6289518291377)
+                const code = await sock.requestPairingCode(process.env.WHATSAPP_NUMBER!)
+                console.log("Mengambil Kode Pairing...")
                 console.log(`Kode Pairing: ${code}`)
             }
 
