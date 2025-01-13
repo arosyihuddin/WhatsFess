@@ -11,7 +11,7 @@ COPY package*.json ./
 RUN yarn install
 
 # Instal TypeScript secara global untuk keperluan build
-RUN yarn install -g typescript
+RUN yarn global add typescript
 
 # Salin semua file aplikasi ke dalam container
 COPY . .
