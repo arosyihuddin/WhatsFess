@@ -17,6 +17,7 @@ import makeWASocket, {
 import P from 'pino'
 import dotenv from 'dotenv'
 import { openaiChat } from './openai'
+import { sleep } from 'openai/core'
 dotenv.config()
 
 export class WhatsFess {
@@ -157,8 +158,10 @@ export class WhatsFess {
             if (this.usePairingCode && !sock.authState.creds.registered) {
                 // const phoneNumber = await this.question('Silakan masukkan nomor telepon Anda:\n')
                 console.log("Mengambil Kode Pairing...")
-                const whatsappNumber = String(process.env.WHATSAPP_NUMBER);
-                // const whatsappNumber = '6289518291377';
+                // const whatsappNumber = String(process.env.WHATSAPP_NUMBER) || '6289518291377';
+                // console.log(whatsappNumber === '6289518291377')
+                const whatsappNumber = '6289518291377';
+                // const code = await sock.requestPairingCode(phoneNumber)
                 const code = await sock.requestPairingCode(whatsappNumber)
                 console.log(`Kode Pairing: ${code}`)
             }

@@ -8,19 +8,19 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Instal dependensi aplikasi
-RUN npm install
+RUN yarn install
 
 # Instal TypeScript secara global untuk keperluan build
-RUN npm install -g typescript
+RUN yarn install -g typescript
 
 # Salin semua file aplikasi ke dalam container
 COPY . .
 
 # Jalankan perintah build TypeScript untuk mengkompilasi aplikasi
-RUN npm run build
+RUN yarn build
 
 # Expose port aplikasi (misalnya port 3000)
 EXPOSE 3000
 
 # Jalankan aplikasi di mode produksi dengan node.js
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
