@@ -83,16 +83,16 @@ export class WhatsFess {
         console.log((channelId))
         await sock.presenceSubscribe(jid)
         await sock.sendPresenceUpdate('composing', jid)
-        const replayText = "await openaiChat(text)"
-        // const replayText = await openaiChat(text)
+        // const replayText = "await openaiChat(text)"
+        const replayText = await openaiChat(text)
         if (isGroup) {
             const groupMetadata = await sock.groupMetadata(msg.key.remoteJid!);
             const groupName = groupMetadata.subject || '';
             await sock.sendMessage(jid, { text: replayText as string }, { quoted: msg })
             console.log(`Mengirim pesan ke grup ${groupName} : ${replayText}`);
         } else {
-            if (text.includes("@menfess")) {
-                text = text.replace("@menfess", "");
+            if (text.includes("/menfess")) {
+                text = text.replace("/menfess", "");
                 try {
                     // Membangun objek pesan yang akan dikirim
                     const objMessage = { conversation: text }; // Membuat pesan text
@@ -156,12 +156,9 @@ export class WhatsFess {
 
             // Menangani kode pairing untuk klien web
             if (this.usePairingCode && !sock.authState.creds.registered) {
-                // const phoneNumber = await this.question('Silakan masukkan nomor telepon Anda:\n')
                 console.log("Mengambil Kode Pairing...")
                 const whatsappNumber = String(process.env.WHATSAPP_NUMBER);
                 await delay(6000)
-                // const whatsappNumber = '6289518291377';
-                // const code = await sock.requestPairingCode(phoneNumber)
                 const code = await sock.requestPairingCode(whatsappNumber)
                 console.log(`Kode Pairing: ${code}`)
             }
