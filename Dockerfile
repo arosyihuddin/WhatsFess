@@ -1,5 +1,5 @@
 # Gunakan image Node.js resmi sebagai base image
-FROM node:16
+FROM node:18
 
 # Tentukan direktori kerja di dalam container
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Instal dependensi aplikasi
-RUN yarn install --frozen-lockfile && yarn cache clean
+RUN yarn install --frozen-lockfile
 
 # Salin semua file aplikasi ke dalam container
 COPY . .
