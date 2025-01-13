@@ -2,19 +2,19 @@
 FROM node:16
 
 # Tentukan direktori kerja di dalam container
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Salin package.json dan package-lock.json terlebih dahulu
 COPY package*.json ./
 
 # Instal dependensi aplikasi
-RUN yarn install
-
-# Instal TypeScript secara global untuk keperluan build
-RUN yarn global add typescript
+RUN yarn install --frozen-lockfile && yarn cache clean
 
 # Salin semua file aplikasi ke dalam container
 COPY . .
+
+# Instal TypeScript secara global untuk keperluan build
+RUN yarn global add typescript
 
 # Jalankan perintah build TypeScript untuk mengkompilasi aplikasi
 RUN yarn build
