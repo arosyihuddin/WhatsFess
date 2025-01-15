@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .  # Menunjukkan lokasi Dockerfile (root proyek)
+    volumes:
+      - .:/app  # Sinkronisasi file lokal dengan container, sangat berguna untuk pengembangan
+    ports:
+      - "3000:3000"  # Pemetaan port antara host dan container
+    environment:
+      - NODE_ENV=production  # Set environment variabel jika diperlukan
+      - REDIS_HOST=redis  # Set alamat host Redis yang akan digunakan oleh aplikasi
+    command: ["yarn", "start"]  # Jalankan aplikasi menggunakan yarn
+    depends_on:
+      - redis  # Pastikan aplikasi hanya berjalan setelah Redis siap
+
+  redis:
+    image: redis:latest  # Gunakan image Redis resmi
+    ports:
+      - "6379:6379"  # Pemetaan port Redis antara host dan container
+    volumes:
+      - redis_data:/data  # Menyimpan data Redis di volume persisten
+
+volumes:
+  redis_data:  # Opsional, jika ingin menyimpan data Redis secara persisten
+    driver: local

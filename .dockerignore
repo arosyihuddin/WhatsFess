@@ -1,6 +1,8 @@
-node_modules/
-auth/
-.git
-.gitignore
-dist/
+node_modules
+dist
+Dockerfile
+docker-compose.yml
+docker-compose.dev.yml
+*.log
+*.json  # Jika tidak diperlukan
 .env

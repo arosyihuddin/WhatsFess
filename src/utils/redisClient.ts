@@ -1,6 +1,6 @@
 // redisClient.ts
 import Redis from 'ioredis';
-
+console.log("Redis Connecting..")
 const redis = new Redis({
     host: '127.0.0.1',
     port: 6379,
@@ -8,7 +8,7 @@ const redis = new Redis({
 });
 
 redis.on('connect', () => {
-    console.log('Connected to Redis');
+    console.log('Redis Connected');
 });
 
 redis.on('error', (err) => {
