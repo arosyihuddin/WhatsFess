@@ -29,8 +29,8 @@ const logger: any = P(
 logger.level = process.env.LOG_LEVEL || 'info';
 
 // Memeriksa apakah variabel lingkungan diperlukan tersedia
-if (!process.env.WHATSAPP_NUMBER || !process.env.PAIRING_CODE) {
-    console.error("WHATSAPP_NUMBER OR PAIRING_CODE is not defined in the environment variables.");
+if (!process.env.WHATSAPP_NUMBER) {
+    console.error("WHATSAPP_NUMBER is not defined in the environment variables.");
     process.exit(1); // Keluar jika variabel environment tidak ditemukan
 }
 

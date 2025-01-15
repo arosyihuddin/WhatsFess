@@ -5,13 +5,11 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_API_KEY,
-});
-
 const openaiChat = async (message: string) => {
+    const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+    });
     try {
-
         const response = await openai.chat.completions.create({
             model: "gpt-4o-mini",
             messages: [
@@ -34,7 +32,7 @@ const openaiChat = async (message: string) => {
 };
 
 const togetherAI = async (message: string) => {
-    const together = new Together();
+    const together = new Together({ apiKey: process.env.TOGETHER_API_KEY });
     try {
         const response = await together.chat.completions.create({
             messages: [
@@ -71,7 +69,11 @@ const togetherAI = async (message: string) => {
 }
 
 export const useLLM = async (message: string) => {
-    // return openaiChat(message)
+    if (process.env.USE_LLM === "openai") {
+        return openaiChat(message)
+    }
+    else if (process.env.NODE_ENV === 'dev') {
+        return "Halo Developer!"
+    }
     return togetherAI(message)
-    // return "Halo"
 }

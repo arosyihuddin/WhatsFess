@@ -154,7 +154,7 @@ export const sendAnonymChat = async (sock: ReturnType<typeof makeWASocket>, mess
         const forawardMessage = `*From: ${conversation.senderName}*\nPesan:\n${pesan ? pesan : message}`;
         await sock.sendMessage(conversation.receiver, { text: forawardMessage })
         await sock.sendMessage(jid, { text: "_✓ Pesan Terkirim!🤗_" })
-        console.log(`Membalas pesan Anonym dari ${jid} ke ${conversation.receiver}: ${pesan}`);
+        console.log(`Membalas pesan Anonym dari ${jid} ke ${conversation.receiver}: ${pesan ? pesan : message}`);
     } catch (error) {
         console.log("Gagal mengirim pesan anonym. Error", error);
         await sock.sendMessage(jid, { text: "_Gagal mengirim pesan, coba lagi nanti_" })
