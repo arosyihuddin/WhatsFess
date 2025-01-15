@@ -3,25 +3,29 @@ version: '3.8'
 services:
   app:
     build:
-      context: .  # Menunjukkan lokasi Dockerfile (root proyek)
-    volumes:
-      - .:/app  # Sinkronisasi file lokal dengan container, sangat berguna untuk pengembangan
+      context: .  # Lokasi Dockerfile (root proyek)
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"  # Pemetaan port antara host dan container
     environment:
-      - NODE_ENV=production  # Set environment variabel jika diperlukan
-      - REDIS_HOST=redis  # Set alamat host Redis yang akan digunakan oleh aplikasi
-    command: ["yarn", "start"]  # Jalankan aplikasi menggunakan yarn
+      NODE_ENV: production
+      REDIS_HOST: redis  # Nama service Redis dalam docker-compose
+      REDIS_PORT: 6379
+      # AUTH_DIR: /app/secrets  # Path ke direktori autentikasi di dalam container
+    command: ["node", "dist/index.js"]
     depends_on:
       - redis  # Pastikan aplikasi hanya berjalan setelah Redis siap
+    # volumes:
+    #   - ./secrets:/app/secrets  # Mount direktori secrets dari host ke container
 
   redis:
-    image: redis:latest  # Gunakan image Redis resmi
+    image: redis:latest  # Gunakan image Redis resmi dari Docker Hub
     ports:
       - "6379:6379"  # Pemetaan port Redis antara host dan container
     volumes:
       - redis_data:/data  # Menyimpan data Redis di volume persisten
+    restart: unless-stopped  # Otomatis restart jika container berhenti
 
 volumes:
-  redis_data:  # Opsional, jika ingin menyimpan data Redis secara persisten
+  redis_data:
     driver: local
