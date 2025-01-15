@@ -7,12 +7,8 @@ const redis = new Redis({
     // password: 'your_password', // Jika ada
 });
 
-redis.on('connect', () => {
-    console.log('Redis Connected');
-});
-
 redis.on('error', (err) => {
-    console.error('Redis error:', err);
+    console.error('Redis error:', err.message);
 });
 
 export default redis;

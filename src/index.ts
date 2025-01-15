@@ -3,7 +3,8 @@ import { WhatsFess } from './app';
 
 (async () => {
     // Inisialisasi Redis
-    redis
-    // Inisialisasi dan mulai klien WhatsApp
-    WhatsFess();
+    redis.on('connect', () => {
+        console.log('Redis Connected');
+        WhatsFess();
+    }); 
 })();
